@@ -43,6 +43,7 @@ def core_map(address):
     import re
     import requests
     import json
+    import folium
     from folium import GeoJson
     from folium import Choropleth
     from folium import Map
