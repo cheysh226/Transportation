@@ -144,7 +144,7 @@ def core_map(address):
         feature['properties']['Km'] = data.loc[data['지역구'] == region_name, '거리'].values[0]
     fig = Figure(width=500, height=400)  # 너비 500px, 높이 300px 설정
     bins = list(data.시간.quantile([0, 0.25, 0.5, 0.75, 1.0]))
-
+    import folium
     m = folium.Map(
         location = [st.session_state.lat, st.session_state.lng],
         zoom_start = 11,
@@ -234,8 +234,7 @@ address = st.text_input(label= '직장', placeholder="직장을 검색하세요 
 if address and not st.session_state.password_verified and not st.session_state.password_attempted:
     with st.spinner("확인 중..."):
         get_location(address)
-        st.markdown(f"<h3 style='font-size: 16px;'>주소 : {st.session_state.location[0]}</h3>", unsafe_allow_html=True)
-        st.write(f"상세 : {st.session_state.location[1]}")
+        st.write(f"주소 : {st.session_state.location[0]} 상세 : {st.session_state.location[1]}")
         time.sleep(2)
     st.session_state.map_generated = True
 
