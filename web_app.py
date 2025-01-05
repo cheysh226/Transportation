@@ -97,18 +97,21 @@ def core_map(address):
 
     # 시간 파싱 함수
     def parse_duration(duration_str):
-        hours = 0
-        minutes = 0
-        # 시간 추출
-        hours_match = re.search(r"(\d+)\s*hour", duration_str)
-        if hours_match:
-            hours = int(hours_match.group(1))
-        # 분 추출
-        minutes_match = re.search(r"(\d+)\s*min", duration_str)
-        if minutes_match:
-            minutes = int(minutes_match.group(1))
-        # 총 분으로 계산
-        return hours * 60 + minutes
+        try:
+            hours = 0
+            minutes = 0
+            # 시간 추출
+            hours_match = re.search(r"(\d+)\s*hour", duration_str)
+            if hours_match:
+                hours = int(hours_match.group(1))
+            # 분 추출
+            minutes_match = re.search(r"(\d+)\s*min", duration_str)
+            if minutes_match:
+                minutes = int(minutes_match.group(1))
+            # 총 분으로 계산
+            return hours * 60 + minutes
+        except:
+            return 0
 
     plus_seoul["거리"] = plus_seoul["거리"].apply(parse_distance)
     plus_seoul["시간"] = plus_seoul["시간"].apply(parse_duration)
