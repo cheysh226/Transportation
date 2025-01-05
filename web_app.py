@@ -27,6 +27,17 @@ if 'password_verified' not in st.session_state:
 if 'password_attempted' not in st.session_state:
     st.session_state.password_attempted = False
 
+def korean_to_ascii(text):
+    # 한글을 임의의 알파벳으로 변환
+    result = []
+    for char in text:
+        if '가' <= char <= '힣':  # 한글 음절 범위 확인
+            # 유니코드 기반 간단 변환 (임의의 규칙 적용)
+            result.append(chr((ord(char) - ord('가')) % 26 + ord('a')))
+        else:
+            # 한글이 아니면 그대로 추가
+            result.append(char)
+    return ''.join(result)
 
 def core_map(address):
     import re
@@ -192,13 +203,13 @@ def create_map(address):
                 st.session_state.password_attempted = True
                 st.success("비밀번호가 맞습니다! 함수를 실행합니다.")
                 with st.spinner("계산 중(구글 검색)..."):
-                    file_path = f"map_{address}.html"
-                    st.write(file_path)
+                    converted_address = korean_to_ascii(address)
+                    file_path = f"map_{converted_address}.html"
                     if os.path.exists(file_path):
                         st.components.v1.html(open(file_path, "r").read(), height=400)
                     else:
-                        # core_map(address)
-                        st.components.v1.html(open(f"map_{address}.html", "r").read(), height=400)
+                        core_map(converted_address)
+                        st.components.v1.html(open(f"map_{converted_address}.html", "r").read(), height=400)
             else:
                 st.session_state.password_verified = False
                 st.session_state.password_attempted = True
