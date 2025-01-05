@@ -83,6 +83,7 @@ def core_map(address):
             dist, time = '', ''
         plus_seoul.loc[i,'거리'] = dist
         plus_seoul.loc[i,'시간'] = time
+        print(dist, time)
     sector = pd.read_csv('center_point.csv', encoding='utf-8')
     plus_seoul['지역구'] = sector["시도명"] + " " + sector["시군구명"] + " " + sector["읍면동명"]
     # 거리 파싱 함수
