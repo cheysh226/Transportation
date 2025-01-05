@@ -247,8 +247,8 @@ if 'map_generated' not in st.session_state:
 
 
 # 중앙 입력창
-st.title("시간으로 그린 출퇴근 지도")
-st.markdown("<h3 style='font-size: 16px;'>대중 교통 등급표 ver.서울</h3>", unsafe_allow_html=True)
+st.title("출퇴근 시간 지도")
+st.markdown("<h3 style='font-size: 16px;'>직주근접 등급 ver.서울</h3>", unsafe_allow_html=True)
 
 address = st.text_input(label= '직장', placeholder="직장을 검색하세요 :", key="address", label_visibility="hidden")
 
