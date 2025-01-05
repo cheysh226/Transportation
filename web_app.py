@@ -87,10 +87,12 @@ def core_map(address):
     plus_seoul['지역구'] = sector["시도명"] + " " + sector["시군구명"] + " " + sector["읍면동명"]
     # 거리 파싱 함수
     def parse_distance(distance_str):
-        match = re.match(r"([\d\.]+)\s*km", distance_str)
-        if match:
-            return float(match.group(1))
-        return None
+        try:
+            match = re.match(r"([\d\.]+)\s*km", distance_str)
+            if match:
+                return float(match.group(1))
+        except:
+            return None
 
     # 시간 파싱 함수
     def parse_duration(duration_str):
