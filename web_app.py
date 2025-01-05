@@ -43,7 +43,9 @@ def core_map(address):
     import re
     import requests
     import json
-    from folium import GeoJson, Choropleth, Map
+    from folium import GeoJson
+    from folium import Choropleth
+    from folium import Map
     from branca.element import Figure
     with open('outline.geojson', 'r', encoding='utf-8') as f:
         seoul_geo = json.load(f)
