@@ -32,7 +32,6 @@ def core_map(address):
     import re
     import requests
     import json
-    import folium
     from branca.element import Figure
     with open('서울_행정동_경계_2017.geojson', 'r', encoding='utf-8') as f:
         seoul_geo = json.load(f)
