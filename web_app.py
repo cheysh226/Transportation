@@ -35,7 +35,7 @@ def core_map(address):
     from branca.element import Figure
     with open('outline.geojson', 'r', encoding='utf-8') as f:
         seoul_geo = json.load(f)
-    plus_seoul = pd.read_csv('center_point.csv', encoding='cp949')
+    plus_seoul = pd.read_csv('center_point.csv', encoding='utf-8')
     plus_seoul = plus_seoul[['읍면동명','X','Y']]
     plus_seoul['거리'] = ''
     plus_seoul['시간'] = ''
