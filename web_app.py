@@ -32,6 +32,7 @@ def core_map(address):
     import re
     import requests
     import json
+    import folium
     from branca.element import Figure
     with open('outline.geojson', 'r', encoding='utf-8') as f:
         seoul_geo = json.load(f)
@@ -144,7 +145,6 @@ def core_map(address):
         feature['properties']['Km'] = data.loc[data['지역구'] == region_name, '거리'].values[0]
     fig = Figure(width=500, height=400)  # 너비 500px, 높이 300px 설정
     bins = list(data.시간.quantile([0, 0.25, 0.5, 0.75, 1.0]))
-    import folium
     m = folium.Map(
         location = [st.session_state.lat, st.session_state.lng],
         zoom_start = 11,
@@ -193,10 +193,11 @@ def create_map(address):
                 st.success("비밀번호가 맞습니다! 함수를 실행합니다.")
                 with st.spinner("계산 중(구글 검색)..."):
                     file_path = f"map_{address}.html"
+                    st.write(file_path)
                     if os.path.exists(file_path):
                         st.components.v1.html(open(file_path, "r").read(), height=400)
                     else:
-                        core_map(address)
+                        # core_map(address)
                         st.components.v1.html(open(f"map_{address}.html", "r").read(), height=400)
             else:
                 st.session_state.password_verified = False
