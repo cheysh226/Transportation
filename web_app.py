@@ -43,7 +43,7 @@ def core_map(address):
     import re
     import requests
     import json
-    import folium
+    import folium import GeoJson, Choropleth, Map
     from branca.element import Figure
     with open('outline.geojson', 'r', encoding='utf-8') as f:
         seoul_geo = json.load(f)
@@ -156,13 +156,13 @@ def core_map(address):
         feature['properties']['Km'] = data.loc[data['지역구'] == region_name, '거리'].values[0]
     fig = Figure(width=500, height=400)  # 너비 500px, 높이 300px 설정
     bins = list(data.시간.quantile([0, 0.25, 0.5, 0.75, 1.0]))
-    m = folium.Map(
+    m = Map(
         location = [st.session_state.lat, st.session_state.lng],
         zoom_start = 11,
         tiles = 'cartodbpositron'
     )
     # Choropleth 추가
-    folium.Choropleth(
+    Choropleth(
         geo_data=seoul_geo,
         name="choropleth",
         data=data,
@@ -177,7 +177,7 @@ def core_map(address):
 
 
     # Tooltip 추가
-    folium.GeoJson(
+    GeoJson(
         data =seoul_geo,
         style_function=lambda x: {'fillColor': 'transparent', 'color': 'transparent'},
         tooltip=folium.GeoJsonTooltip(
