@@ -33,7 +33,7 @@ def core_map(address):
     import requests
     import json
     from branca.element import Figure
-    with open('서울_행정동_경계_2017.geojson', 'r', encoding='utf-8') as f:
+    with open('outline.geojson', 'r', encoding='utf-8') as f:
         seoul_geo = json.load(f)
     plus_seoul = pd.read_csv('서울시_행정동_중심점_2017.csv', encoding='cp949')
     plus_seoul = plus_seoul[['읍면동명','X','Y']]
