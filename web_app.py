@@ -6,7 +6,7 @@ import requests, json
 import pandas as pd
 import os
 
-correct_password = "dt2025"
+correct_password = "skmr2025"
 
 # 스타일 중앙 정렬
 st.markdown("""
